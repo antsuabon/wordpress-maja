@@ -1,0 +1,17 @@
+Log created: 2021-01-07 09:25:29
+Type: backup
+[2021-01-07 09:25:34][notice]Start backing up.
+[2021-01-07 09:25:34][notice]server info fcgi:Off max execution time: 900 wp version:5.6 php version:8.0.0 db version:5.5.5 php ini:safe_mode: memory_limit:256M memory_get_usage:64,70 MB memory_get_peak_usage:65,03 MB extensions:PDO enabled curl enabled zlib enabled   is_multisite:0
+[2021-01-07 09:25:34][notice]Prepare to backup backup_themes files.
+[2021-01-07 09:25:34][notice]File number: 556
+[2021-01-07 09:25:34][notice]Start compressing backup_themes
+[2021-01-07 09:25:34][notice]Prepare to zip files. file: 25.51.25.161_wordpress_wpvivid-5ff6d3891e79b_2021-01-07-09-25_backup_themes.zip
+[2021-01-07 09:25:35][notice]Adding zip files completed.25.51.25.161_wordpress_wpvivid-5ff6d3891e79b_2021-01-07-09-25_backup_themes.zip, filesize: 12,31 MB
+[2021-01-07 09:25:35][notice]Compressing backup_themes completed
+[2021-01-07 09:25:35][notice]Backing up backup_themes completed.
+[2021-01-07 09:25:36][notice]Prepare to backup backup_plugin files.
+[2021-01-07 09:25:36][notice]File number: 9218
+[2021-01-07 09:25:36][notice]Start compressing backup_plugin
+[2021-01-07 09:25:42][notice]Prepare to zip files. file: 25.51.25.161_wordpress_wpvivid-5ff6d3891e79b_2021-01-07-09-25_backup_plugin.zip
+[2021-01-07 09:25:44][error]An error has occurred. class:ValueError;msg:fread(): Argument #2 ($length) must be greater than 0;code:0;line:2677;in_file:D:\xampp\htdocs\wordpress\wp-admin\includes\class-pclzip.php;
+[2021-01-07 09:25:44][error]An error has occurred. class:ValueError;msg:fread(): Argument #2 ($length) must be greater than 0;code:0;line:2677;in_file:D:\xampp\htdocs\wordpress\wp-admin\includes\class-pclzip.php;
