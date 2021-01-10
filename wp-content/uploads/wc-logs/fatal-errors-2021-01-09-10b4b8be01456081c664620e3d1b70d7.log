@@ -1,0 +1,17 @@
+2021-01-09T20:43:29+00:00 CRITICAL Uncaught Error: Attempt to assign property "default" on null in D:\xampp\htdocs\wp-content\themes\storefront\inc\customizer\class-storefront-customizer.php:106
+Stack trace:
+#0 D:\xampp\htdocs\wp-includes\class-wp-hook.php(287): Storefront_Customizer->edit_default_customizer_settings(Object(WP_Customize_Manager))
+#1 D:\xampp\htdocs\wp-includes\class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#2 D:\xampp\htdocs\wp-includes\plugin.php(484): WP_Hook->do_action(Array)
+#3 D:\xampp\htdocs\wp-includes\class-wp-customize-manager.php(933): do_action('customize_regis...', Object(WP_Customize_Manager))
+#4 D:\xampp\htdocs\wp-includes\class-wp-hook.php(287): WP_Customize_Manager->wp_loaded('')
+#5 D:\xampp\htdocs\wp-includes\class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#6 D:\xampp\htdocs\wp-includes\plugin.php(484): WP_Hook->do_action(Array)
+#7 D:\xampp\htdocs\wp-settings.php(579): do_action('wp_loaded')
+#8 D:\xampp\htdocs\wp-config.php(94): require_once('D:\\xampp\\htdocs...')
+#9 D:\xampp\htdocs\wp-load.php(37): require_once('D:\\xampp\\htdocs...')
+#10 D:\xampp\htdocs\wp-admin\admin.php(34): require_once('D:\\xampp\\htdocs...')
+#11 D:\xampp\htdocs\wp-admin\customize.php(13): require_once('D:\\xampp\\htdocs...')
+#12 {main}
+  thrown in D:\xampp\htdocs\wp-content\themes\storefront\inc\customizer\class-storefront-customizer.php on line 106
+

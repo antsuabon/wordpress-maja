@@ -369,3 +369,15 @@
         if ( class_exists( 'Xcrud_config' ) ){
             Xcrud_config::$load_jquery = apply_filters( 'wppb_xcrud_jquery_compatibility', false );
         }
+
+    /****************************************************
+     * Plugin Name: bbPress Messages
+     * Plugin URI: https://wordpress.org/plugins/bbp-messages/
+     * This plugin relies on the 'bbp_template_before_user_profile' hook
+     ****************************************************/
+    if ( function_exists( 'bbp_messages_loaded' ) ){
+        add_action( 'wppb_bbp_template_before_user_profile', 'wppb_bbp_messages_compatibility' );
+        function wppb_bbp_messages_compatibility (){
+            do_action( 'bbp_template_before_user_profile' );
+        }
+    }

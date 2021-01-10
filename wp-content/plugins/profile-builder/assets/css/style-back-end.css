@@ -364,6 +364,11 @@
 }
 
 /* Admin Bar Page */
+
+.wppb-admin-bar > .description{
+    margin-top:23px;
+}
+
 .wppb-admin-bar label{
 	margin-right:30px;
 	padding:5px;
@@ -833,3 +838,78 @@ div.wppb-notice .notice-dismiss {
 .wppb_manage_fields_sortables > .dashicons {color: #f4f4f4; position: absolute; margin-left: -32px;}
 .wppb_manage_fields_sortables:hover > .dashicons {color: #000;}
 .wppb_selector_for_sortable_checkbox {margin-left: 32px; width: calc(100% - 32px);}
+
+
+/**
+Advanced Settings or Toolbox (legacy addon)
+ */
+.wppb-toolbox-list {
+    margin-top: 0;
+}
+
+.wppb-toolbox-list li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.wppb-toolbox-list .toolbox-label {
+    width: 140px;
+}
+
+.wppb-toolbox-list .toolbox-select2-container {
+    width: 100%;
+    max-width: 350px;
+}
+
+.wppb-toolbox-list #toolbox-restricted-email-domains-message {
+    width: 100%;
+    max-width: 350px;
+}
+
+.wppb-toolbox-list input[type="text"] {
+    width: 100%;
+}
+
+.wppb-toolbox-list--margin {
+    margin-top: 14px;
+}
+
+.form-table td {
+    padding-top: 20px;
+}
+
+.wppb-toolbox-accordion {
+    display: none;
+}
+
+.wppb-toolbox-wrap #setting-error-settings_updated p {
+    font-size: 13px;
+}
+
+.wppb-toolbox-admin-emails{
+    width: 75%;
+}
+
+/* select 2 field */
+.wppb-select2 span.select2-container,
+.wppb-select2 div.select2-container{	/* compatibility with WooCommerce which loads Select2 v.3.5.3 */
+    width: 15em !important;
+}
+
+@media screen and (max-width: 782px){
+    .wppb-select2 span.select2-container,
+    .wppb-select2 div.select2-container{ /* compatibility with WooCommerce which loads Select2 v.3.5.3 */
+        width: 100% !important;
+    }
+    .wppb-select2 span.select2-selection,
+    .wppb-select2 div.select2-selection{ /* compatibility with WooCommerce which loads Select2 v.3.5.3 */
+        height: 40px !important;
+        font-size: 16px;
+        line-height: 1.5;
+        padding-top: 7px;
+        padding-right: 10px;
+        padding-bottom: 7px;
+        padding-left: 10px;
+    }
+}

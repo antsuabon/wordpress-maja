@@ -146,13 +146,13 @@ function wppb_basic_info_content() {
 		</div>
 		<hr/>
 		<div> 
-			<h3><?php _e( 'Powerful Modules (**)', 'profile-builder' );?></h3>
-			<p><?php _e( 'Everything you will need to manage your users is probably already available using the Pro Modules.', 'profile-builder' ); ?></p>
-            <?php if( file_exists ( WPPB_PLUGIN_DIR.'/modules/modules.php' ) ): ?>
-			    <p><a href="admin.php?page=profile-builder-modules" class="button"><?php _e( 'Enable your modules', 'profile-builder' ); ?></a></p>
+			<h3><?php _e( 'Powerful Add-ons (**)', 'profile-builder' );?></h3>
+			<p><?php _e( 'Everything you will need to manage your users is probably already available using the Pro Add-ons.', 'profile-builder' ); ?></p>
+            <?php if( file_exists ( WPPB_PLUGIN_DIR.'/add-ons/add-ons.php' ) ): ?>
+			    <p><a href="admin.php?page=profile-builder-add-ons" class="button"><?php _e( 'Enable your add-ons', 'profile-builder' ); ?></a></p>
             <?php endif; ?>
 			<?php if ($version == 'Free'){ ?>
-				<p><a href="https://www.cozmoslabs.com/wordpress-profile-builder/?utm_source=wpbackend&utm_medium=clientsite&utm_content=basicinfo-modules&utm_campaign=PBFree" class="wppb-button-free"><?php _e( 'Find out more about PRO Modules', 'profile-builder' ); ?></a></p>
+				<p><a href="https://www.cozmoslabs.com/wordpress-profile-builder/?utm_source=wpbackend&utm_medium=clientsite&utm_content=basicinfo-add-ons&utm_campaign=PBFree" class="wppb-button-free"><?php _e( 'Find out more about PRO Modules', 'profile-builder' ); ?></a></p>
 			<?php }?>
 		</div>
 		<div class="wppb-row wppb-3-col">

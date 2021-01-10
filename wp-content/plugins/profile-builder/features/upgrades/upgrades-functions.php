@@ -642,3 +642,40 @@ function wppb_new_custom_redirects_compatibility() {
 		}
 	}
 }
+
+/**
+ * Check if an addon was active as a slug before it was programmatically deactivated by us
+ * On the plugin updates, where we transitioned add-ons we save the status in an option 'wppb_old_add_ons_status'
+ * @param $slug
+ * @return false
+ */
+function wppb_was_addon_active_as_plugin( $slug ){
+    $old_add_ons_status = get_option( 'wppb_old_add_ons_status' );
+    if( isset( $old_add_ons_status[$slug] ) )
+        return $old_add_ons_status[$slug];
+    else
+        return false;
+}
+
+/**
+ * Function that returns the slugs of old addons that were plugins
+ * @return string[]
+ */
+function wppb_get_old_addons_slug_list(){
+    $old_addon_list = array(
+                            'pd-add-on-multiple-admin-e-mails/index.php',
+                            'pb-add-on-customization-toolbox/index.php',
+                            'pb-add-on-email-confirmation-field/index.php',
+                            'pb-add-on-placeholder-labels/pbpl.php',
+                            'pb-add-on-gdpr-communication-preferences/pb-gdpr-communication-preferences.php',
+                            'pb-add-on-labels-edit/pble.php',
+                            'pb-add-on-maximum-character-length/index.php',
+                            'pb-add-on-custom-css-classes-on-fields/index.php',
+                            'pb-add-on-import-export/pbie.php',
+                            );
+
+    if( PROFILE_BUILDER !== 'Profile Builder Free' )
+        $old_addon_list[] = 'pb-add-on-select2/index.php';//don't disable select 2 for people who already had it in free
+
+    return $old_addon_list;
+}

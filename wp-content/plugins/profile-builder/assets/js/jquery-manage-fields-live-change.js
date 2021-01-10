@@ -253,7 +253,19 @@ var fields 	=	{
 																						'.row-overwrite-existing'
 																					]
 																},
-
+						'Email Confirmation':					{	'show_rows'	:	[
+																						'.row-field-title',
+																						'.row-field',
+																						'.row-description',
+																						'.row-required'
+																					],
+																	'required'	:	[
+																		true
+																	],
+																	'properties':	{
+																		'meta_name_value'	: ''
+																	}
+																},
 						'URL':								{	'show_rows'	:	[
 																						'.row-field-title',
 																						'.row-meta-name',
@@ -374,9 +386,38 @@ var fields 	=	{
 																					'.row-cpt',
 																					'.row-required',
 																					'.row-overwrite-existing'
-																				]
+																					]
 																},
-
+						"Select2": 								{	'show_rows'	:	[
+																					'.row-field-title',
+																					'.row-meta-name',
+																					'.row-description',
+																					'.row-default-option',
+																					'.row-required',
+																					'.row-overwrite-existing',
+																					'.row-options',
+																					'.row-labels',
+																					'.row-visibility',
+																					'.row-user-role-visibility',
+																					'.row-location-visibility'
+																					]
+																},
+						"Select2 (Multiple)": 					{	'show_rows' :   [
+																					'.row-field-title',
+																					'.row-meta-name',
+																					'.row-description',
+																					'.row-default-options',
+																					'.row-required',
+																					'.row-overwrite-existing',
+																					'.row-options',
+																					'.row-labels',
+																					'.row-select2-multiple-limit',
+																					'.row-select2-multiple-tags',
+																					'.row-visibility',
+																					'.row-user-role-visibility',
+																					'.row-location-visibility'
+																					]
+																},
 						'Checkbox':								{	'show_rows'	:	[
 																						'.row-field-title',
 																						'.row-meta-name',

@@ -111,7 +111,12 @@ function wppb_populate_manage_fields(){
 
 		$manage_field_types['optgroups']['other']['options'][] = 'Email';
 		$manage_field_types['optgroups']['other']['options'][] = 'URL';
+
+        $manage_field_types['optgroups']['other']['options'][] = 'Select2';
+        $manage_field_types['optgroups']['other']['options'][] = 'Select2 (Multiple)';
     }
+
+    $manage_field_types['optgroups']['other']['options'][] = 'Email Confirmation';
 
     /* added recaptcha and user role field since version 2.6.2 */
     $manage_field_types['optgroups']['advanced']['options'][] = 'reCAPTCHA';
@@ -278,7 +283,12 @@ function wppb_populate_manage_fields(){
 			'description' => __( 'When loading the map of all users with no pagination, the map script will iterate multiple times and will expose gradually POIs on the map, until all the POIs for the users that match the criteria will be added on the map (think of this as of pagination for the map POIs). The smaller the number of users per iteration, the fastest the iteration response will be, but for a large number of users, the map script will iterate multiple times. Setting a higher limit will decrease the performance, but might produce a smaller number of iterations. <br><br><b>Please adjust this value to your hosting capabilities, and make sure that the value you set is the best for performance.</b> We recommend a <b>maximum</b> value of 300.', 'profile-builder' ),
 			'default'     => 50,
 		),
-	) );
+
+        //add Select 2 attributes
+        array( 'type' => 'text', 'slug' => 'select2-multiple-limit', 'title' => __( 'Maximum Selections', 'profile-builder' ), 'description' => __( "Select2 multi-value select boxes can set restrictions regarding the maximum number of options selected.", 'profile-builder' ) ),
+        array( 'type' => 'checkbox', 'slug' => 'select2-multiple-tags', 'title' => __( 'User Inputted Options', 'profile-builder' ), 'options' => array( '%Enable user inputted options%yes' ), 'description' => __( "Check this to allow users to create their own options beside the pre-existing ones.", 'profile-builder' ) ),
+
+) );
 
 	// create the new submenu with the above options
 	$args = array(
@@ -1064,6 +1074,8 @@ function wppb_return_unique_field_list( $only_default_fields = false ){
 
     $unique_field_list[] = 'GDPR Checkbox';
 
+    $unique_field_list[] = 'Email Confirmation';
+
 	if ( wppb_can_users_signup_blog() ) {
 		$unique_field_list[] = 'Default - Blog Details';
 	}
@@ -1359,9 +1371,9 @@ function wppb_add_content_before_manage_fields(){
    <p>
        <?php
        if( PROFILE_BUILDER == 'Profile Builder Pro' )
-           _e("If you're interested in displaying different fields in the registration and edit profile forms, please use the Multiple Registration & Edit Profile Forms Modules.", 'profile-builder');
+           _e("If you're interested in displaying different fields in the registration and edit profile forms, please use the Multiple Registration & Edit Profile Forms Add-ons.", 'profile-builder');
        else
-           _e( "With Profile Builder Pro you can display different fields in the registration and edit profile forms, using the Multiple Registration & Edit Profile Forms module.", "profile-builder" )
+           _e( "With Profile Builder Pro you can display different fields in the registration and edit profile forms, using the Multiple Registration & Edit Profile Forms add-on.", "profile-builder" )
        ?>
    </p>
 <?php

@@ -1327,6 +1327,13 @@ class Wordpress_Creation_Kit_PB{
                     else
                         $value_attr = $option_parts[2];
                 }
+                else{
+                    $label = $option;
+                    if( !empty( $values ) )
+                        $value_attr = $values[$i];
+                    else
+                        $value_attr = $option;
+                }
             }
         }
 

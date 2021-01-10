@@ -11,7 +11,7 @@ Author URI: http://www.mattvanandel.com
  * to check if it's available and load it if necessary.
  */
 if( !class_exists( 'PB_WP_List_Table' ) ){
-    require_once( WPPB_PLUGIN_DIR.'/features/class-list-table.php' );
+    require_once( WPPB_PLUGIN_DIR.'/assets/lib/class-list-table.php' );
 }
 
 

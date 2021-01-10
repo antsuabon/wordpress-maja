@@ -3,7 +3,7 @@
 Plugin Name: Profile Builder
 Plugin URI: https://www.cozmoslabs.com/wordpress-profile-builder/
 Description: Login, registration and edit profile shortcodes for the front-end. Also you can choose what fields should be displayed or add new (custom) ones both in the front-end and in the dashboard.
-Version: 3.3.3
+Version: 3.3.4
 Author: Cozmoslabs
 Author URI: https://www.cozmoslabs.com/
 Text Domain: profile-builder
@@ -65,7 +65,7 @@ function wppb_free_plugin_init() {
          *
          *
          */
-        define('PROFILE_BUILDER_VERSION', '3.3.3' );
+        define('PROFILE_BUILDER_VERSION', '3.3.4' );
         define('WPPB_PLUGIN_DIR', plugin_dir_path(__FILE__));
         define('WPPB_PLUGIN_URL', plugin_dir_url(__FILE__));
         define('WPPB_PLUGIN_BASENAME', plugin_basename(__FILE__));
@@ -76,7 +76,7 @@ function wppb_free_plugin_init() {
         if (file_exists(WPPB_PLUGIN_DIR . '/assets/lib/class_notices.php'))
             include_once(WPPB_PLUGIN_DIR . '/assets/lib/class_notices.php');
 
-        if (file_exists(WPPB_PLUGIN_DIR . '/modules/modules.php'))
+        if (file_exists(WPPB_PLUGIN_DIR . '/add-ons/add-ons.php'))
             define('PROFILE_BUILDER', 'Profile Builder Pro');
         elseif (file_exists(WPPB_PLUGIN_DIR . '/front-end/extra-fields/extra-fields.php'))
             define('PROFILE_BUILDER', 'Profile Builder Hobbyist');
@@ -113,6 +113,7 @@ function wppb_free_plugin_init() {
         include_once(WPPB_PLUGIN_DIR . '/admin/admin-functions.php');
         include_once(WPPB_PLUGIN_DIR . '/admin/basic-info.php');
         include_once(WPPB_PLUGIN_DIR . '/admin/general-settings.php');
+        include_once(WPPB_PLUGIN_DIR . '/admin/advanced-settings/advanced-settings.php');
         include_once(WPPB_PLUGIN_DIR . '/admin/admin-bar.php');
         include_once(WPPB_PLUGIN_DIR . '/admin/private-website.php');
         include_once(WPPB_PLUGIN_DIR . '/admin/manage-fields.php');
@@ -136,13 +137,13 @@ function wppb_free_plugin_init() {
             include_once(WPPB_PLUGIN_DIR . '/admin/register-version.php');
         }
 
-        if (file_exists(WPPB_PLUGIN_DIR . '/modules/modules.php')) {
-            include_once(WPPB_PLUGIN_DIR . '/modules/modules.php');
-            include_once(WPPB_PLUGIN_DIR . '/modules/repeater-field/repeater-module.php');
-            include_once(WPPB_PLUGIN_DIR . '/modules/custom-redirects/custom-redirects.php');
-            include_once(WPPB_PLUGIN_DIR . '/modules/email-customizer/email-customizer.php');
-            include_once(WPPB_PLUGIN_DIR . '/modules/multiple-forms/multiple-forms.php');
-            include_once(WPPB_PLUGIN_DIR . '/modules/user-listing/userlisting.php');
+        if (file_exists(WPPB_PLUGIN_DIR . '/add-ons/add-ons.php')) {
+            include_once(WPPB_PLUGIN_DIR . '/add-ons/add-ons.php');
+            include_once(WPPB_PLUGIN_DIR . '/add-ons/repeater-field/repeater-module.php');
+            include_once(WPPB_PLUGIN_DIR . '/add-ons/custom-redirects/custom-redirects.php');
+            include_once(WPPB_PLUGIN_DIR . '/add-ons/email-customizer/email-customizer.php');
+            include_once(WPPB_PLUGIN_DIR . '/add-ons/multiple-forms/multiple-forms.php');
+            include_once(WPPB_PLUGIN_DIR . '/add-ons/user-listing/userlisting.php');
 
             $wppb_module_settings = get_option('wppb_module_settings');
             if (isset($wppb_module_settings['wppb_userListing']) && ($wppb_module_settings['wppb_userListing'] == 'show')) {
@@ -155,10 +156,10 @@ function wppb_free_plugin_init() {
                 $wppb_email_customizer_activate = 'show';
 
             if ( $wppb_email_customizer_activate == 'show')
-            include_once(WPPB_PLUGIN_DIR . '/modules/email-customizer/admin-email-customizer.php');
+            include_once(WPPB_PLUGIN_DIR . '/add-ons/email-customizer/admin-email-customizer.php');
 
             if ( $wppb_email_customizer_activate == 'show' )
-            include_once(WPPB_PLUGIN_DIR . '/modules/email-customizer/user-email-customizer.php');
+            include_once(WPPB_PLUGIN_DIR . '/add-ons/email-customizer/user-email-customizer.php');
         }
 
         include_once(WPPB_PLUGIN_DIR . '/admin/add-ons.php');
@@ -174,13 +175,44 @@ function wppb_free_plugin_init() {
                 include_once WPPB_PLUGIN_DIR . 'features/content-restriction/class-elementor-content-restriction.php';
         }
 
+        //Include Free Add-ons
+        $wppb_free_add_ons_settings = get_option( 'wppb_free_add_ons_settings', array() );
+        if( !empty( $wppb_free_add_ons_settings ) ){
+
+            if( isset( $wppb_free_add_ons_settings['custom-css-classes-on-fields'] ) && $wppb_free_add_ons_settings['custom-css-classes-on-fields'] ){
+                if( file_exists( WPPB_PLUGIN_DIR . 'add-ons-free/custom-css-classes-on-fields/custom-css-classes-on-fields.php' ) )
+                    include_once WPPB_PLUGIN_DIR . 'add-ons-free/custom-css-classes-on-fields/custom-css-classes-on-fields.php';
+            }
+
+            if( isset( $wppb_free_add_ons_settings['gdpr-communication-preferences'] ) && $wppb_free_add_ons_settings['gdpr-communication-preferences'] ){
+                if( file_exists( WPPB_PLUGIN_DIR . 'add-ons-free/gdpr-communication-preferences/gdpr-communication-preferences.php' ) )
+                    include_once WPPB_PLUGIN_DIR . 'add-ons-free/gdpr-communication-preferences/gdpr-communication-preferences.php';
+            }
+
+            if( isset( $wppb_free_add_ons_settings['import-export'] ) && $wppb_free_add_ons_settings['import-export'] ){
+                if( file_exists( WPPB_PLUGIN_DIR . 'add-ons-free/import-export/import-export.php' ) )
+                    include_once WPPB_PLUGIN_DIR . 'add-ons-free/import-export/import-export.php';
+            }
+
+            if( isset( $wppb_free_add_ons_settings['labels-edit'] ) && $wppb_free_add_ons_settings['labels-edit'] ){
+                if( file_exists( WPPB_PLUGIN_DIR . 'add-ons-free/labels-edit/labels-edit.php' ) )
+                    include_once WPPB_PLUGIN_DIR . 'add-ons-free/labels-edit/labels-edit.php';
+            }
+
+            if( isset( $wppb_free_add_ons_settings['maximum-character-length'] ) && $wppb_free_add_ons_settings['maximum-character-length'] ){
+                if( file_exists( WPPB_PLUGIN_DIR . 'add-ons-free/maximum-character-length/maximum-character-length.php' ) )
+                    include_once WPPB_PLUGIN_DIR . 'add-ons-free/maximum-character-length/maximum-character-length.php';
+            }
+
+        }
+
         /**
          * Check for updates
          *
          *
          */
         if (file_exists(WPPB_PLUGIN_DIR . '/update/update-checker.php')) {
-            if (file_exists(WPPB_PLUGIN_DIR . '/modules/modules.php')) {
+            if (file_exists(WPPB_PLUGIN_DIR . '/add-ons/add-ons.php')) {
                 $localSerial = get_option('wppb_profile_builder_pro_serial');
                 $wppb_update = new wppb_PluginUpdateChecker('http://updatemetadata.cozmoslabs.com/?localSerialNumber=' . $localSerial . '&uniqueproduct=CLPBP', __FILE__, 'profile-builder-pro-update');
 

@@ -331,7 +331,7 @@ function wppb_print_cpt_script( $hook ){
 
 	if (( $hook == 'profile-builder_page_manage-fields' ) ||
 		( $hook == 'profile-builder_page_profile-builder-basic-info' ) ||
-		( $hook == 'profile-builder_page_profile-builder-modules' ) ||
+		( $hook == 'profile-builder_page_profile-builder-add-ons' ) ||
 		( $hook == 'profile-builder_page_profile-builder-general-settings' ) ||
 		( $hook == 'profile-builder_page_profile-builder-admin-bar-settings' ) ||
 		( $hook == 'profile-builder_page_profile-builder-register' ) ||
@@ -377,9 +377,9 @@ function wppb_print_cpt_script( $hook ){
 			wp_enqueue_style( 'wppb-back-end-style', WPPB_PLUGIN_URL . 'assets/css/style-back-end.css', array(), PROFILE_BUILDER_VERSION );
 		}
 	}
-    if ( file_exists ( WPPB_PLUGIN_DIR.'/update/update-checker.php' ) || $hook == 'admin_page_profile-builder-private-website' ) {
-        wp_enqueue_script( 'wppb-sitewide', WPPB_PLUGIN_URL . 'assets/js/jquery-pb-sitewide.js', array(), PROFILE_BUILDER_VERSION, true );
-    }
+
+    wp_enqueue_script( 'wppb-sitewide', WPPB_PLUGIN_URL . 'assets/js/jquery-pb-sitewide.js', array(), PROFILE_BUILDER_VERSION, true );
+
     wp_enqueue_style( 'wppb-serial-notice-css', WPPB_PLUGIN_URL . 'assets/css/serial-notice.css', false, PROFILE_BUILDER_VERSION );
 }
 add_action( 'admin_enqueue_scripts', 'wppb_print_cpt_script' );
@@ -394,6 +394,7 @@ add_action( "admin_footer-profile-builder_page_profile-builder-content_restricti
 add_action( "admin_footer-profile-builder_page_profile-builder-content_restriction", "wppb_make_setting_menu_item_highlighted" );
 add_action( "admin_footer-profile-builder_page_admin-email-customizer", "wppb_make_setting_menu_item_highlighted" );
 add_action( "admin_footer-profile-builder_page_user-email-customizer", "wppb_make_setting_menu_item_highlighted" );
+add_action( "admin_footer-profile-builder_page_profile-builder-toolbox-settings", "wppb_make_setting_menu_item_highlighted" );
 function wppb_make_setting_menu_item_highlighted(){
 	echo'<script type="text/javascript">
         jQuery(document).ready( function($) {
@@ -1613,4 +1614,37 @@ function wppb_embed($atts, $content){
 	}
 
 	return $content;
+}
+
+/**
+ * Function to determine if an add-on is active
+ */
+
+function wppb_check_if_add_on_is_active( $slug ){
+    //the old modulse part
+    if (file_exists(WPPB_PLUGIN_DIR . '/add-ons/add-ons.php')) {
+        $wppb_module_settings = get_option('wppb_module_settings', 'not_found');
+        if ($wppb_module_settings != 'not_found') {
+            foreach ($wppb_module_settings as $add_on_slug => $status) {
+                if ($slug == $add_on_slug) {
+                    if ($status === 'hide')
+                        return false;
+                    elseif ($status === 'show')
+                        return true;
+                }
+            }
+        }
+    }
+
+    //the free addons part
+    $wppb_free_add_ons_settings = get_option( 'wppb_free_add_ons_settings', array() );
+    if ( !empty( $wppb_free_add_ons_settings ) ){
+        foreach( $wppb_free_add_ons_settings as $add_on_slug => $status ){
+            if( $slug == $add_on_slug ){
+                return $status;
+            }
+        }
+    }
+
+    return false;
 }

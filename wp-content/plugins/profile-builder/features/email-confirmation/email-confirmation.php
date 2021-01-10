@@ -306,6 +306,16 @@ function wppb_add_meta_to_user_on_activation( $user_id, $password, $meta ){
 						}
 					}
 				}
+				case 'Select2 (Multiple)':{
+
+                    $selected_values = '';
+                    if (!empty($meta[wppb_handle_meta_name($value['meta-name'])]) && is_array($meta[wppb_handle_meta_name($value['meta-name'])])) {
+                        foreach ($meta[wppb_handle_meta_name($value['meta-name'])] as $key => $value)
+                            $selected_values .= sanitize_text_field($value) . ',';
+                    }
+
+                    update_user_meta( $user_id, $value['meta-name'], trim( $selected_values, ',' ) );
+                }
                 default: {
 					if ( isset( $meta[$value['meta-name']] ) ) {
 						update_user_meta($user_id, $value['meta-name'], $meta[$value['meta-name']]);

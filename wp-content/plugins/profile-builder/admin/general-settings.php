@@ -1,24 +1,34 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
- * Function that returns an array with the settings tabs(pages) and subtabs(subpages)
+ * Function that returns an array with the settings tabs(pages) and secondary tabs( can be sub-pages (we load a registered page as a secondary tab) or actual sub-tabs )
  * @return array with the tabs
  */
 function wppb_get_settings_pages(){
+    $wppb_module_settings = get_option('wppb_module_settings');
+
 	$settings_pages['pages'] = array(
 		'profile-builder-general-settings' => __( 'General Settings', 'profile-builder' ),
 		'profile-builder-admin-bar-settings' => __( 'Admin Bar', 'profile-builder' ),
 		'profile-builder-content_restriction' => __( 'Content Restriction', 'profile-builder' ),
 		'profile-builder-private-website' => __( 'Private Website', 'profile-builder' ),
+		'profile-builder-toolbox-settings' => __( 'Advanced Settings', 'profile-builder' ),
 	);
 
-	if (file_exists(WPPB_PLUGIN_DIR . '/modules/modules.php')) {
-		$wppb_module_settings = get_option('wppb_module_settings');
+    //add tabs here for Advanced Settings
+    $settings_pages['sub-tabs']['profile-builder-toolbox-settings']['forms'] = __( 'Forms', 'profile-builder' );
+    $settings_pages['sub-tabs']['profile-builder-toolbox-settings']['fields'] = __( 'Fields', 'profile-builder' );
+    if ( file_exists( WPPB_PLUGIN_DIR . '/add-ons/add-ons.php' ) && isset( $wppb_module_settings['wppb_userListing'] ) &&  $wppb_module_settings['wppb_userListing'] === 'show' )
+        $settings_pages['sub-tabs']['profile-builder-toolbox-settings']['userlisting'] = __( 'Userlisting', 'profile-builder' );
+    $settings_pages['sub-tabs']['profile-builder-toolbox-settings']['shortcodes'] = __( 'Shortcodes', 'profile-builder' );
+    $settings_pages['sub-tabs']['profile-builder-toolbox-settings']['admin'] = __( 'Admin', 'profile-builder' );
+
+    //add sub-pages here for email customizer
+	if (file_exists(WPPB_PLUGIN_DIR . '/add-ons/add-ons.php')) {
 		if( ( isset($wppb_module_settings['wppb_emailCustomizerAdmin']) && $wppb_module_settings['wppb_emailCustomizerAdmin'] == 'show' ) || ( isset($wppb_module_settings['wppb_emailCustomizer']) && $wppb_module_settings['wppb_emailCustomizer'] == 'show') ){
 			$settings_pages['pages']['user-email-customizer'] = __( 'Email Customizer', 'profile-builder' );
-			//add subpages here for email customizer
-			$settings_pages['subpages']['user-email-customizer']['user-email-customizer'] = __( 'User Emails', 'profile-builder' );
-			$settings_pages['subpages']['user-email-customizer']['admin-email-customizer'] = __( 'Administrator Emails', 'profile-builder' );
+			$settings_pages['sub-pages']['user-email-customizer']['user-email-customizer'] = __( 'User Emails', 'profile-builder' );
+			$settings_pages['sub-pages']['user-email-customizer']['admin-email-customizer'] = __( 'Administrator Emails', 'profile-builder' );
 		}
 	}
 
@@ -30,14 +40,14 @@ function wppb_get_settings_pages(){
  */
 function wppb_generate_settings_tabs(){
 	?>
-	<h3 class="nav-tab-wrapper">
+	<nav class="nav-tab-wrapper">
 	<?php
 		$pages = wppb_get_settings_pages();
 
 		$active_tab = sanitize_text_field($_GET['page']);
 		//if we are on a subpage we need to change the active tab to the parent
-		if( !empty( $pages['subpages'] ) ) {
-			foreach ($pages['subpages'] as $parent_slug => $subpages) {
+		if( !empty( $pages['sub-pages'] ) ) {
+			foreach ($pages['sub-pages'] as $parent_slug => $subpages) {
 				if (array_key_exists($active_tab, $subpages)) {
 					$active_tab = $parent_slug;
 				}
@@ -48,22 +58,41 @@ function wppb_generate_settings_tabs(){
 			echo '<a href="' . admin_url( add_query_arg( array( 'page' => $page_slug ), 'admin.php' ) ) . '"  class="nav-tab ' . ( $active_tab == $page_slug ? 'nav-tab-active' : '' ) . '">'. $tab_name .'</a>';
 		}
 	?>
-	</h3>
+	</nav>
 	<?php
-	if( !empty( $pages['subpages'] ) ) {
-		$active_subpage = sanitize_text_field($_GET['page']);
-		echo '<ul class="wppb-subtabs subsubsub">';
-		foreach ($pages['subpages'] as $parent_slug => $subpages) {
+
+    $active_subpage = sanitize_text_field($_GET['page']);
+
+	if( !empty( $pages['sub-pages'] ) ) {
+		foreach ($pages['sub-pages'] as $parent_slug => $subpages) {
 			if (array_key_exists( sanitize_text_field( $_GET['page'] ), $subpages)) {
+                echo '<ul class="wppb-subtabs subsubsub">';
 				foreach ($subpages as $subpage_slug => $subpage_name) {
 					echo '<li><a href="' . admin_url(add_query_arg(array('page' => $subpage_slug), 'admin.php')) . '"  class="nav-sub-tab ' . ($active_subpage == $subpage_slug ? 'current' : '') . '">' . $subpage_name . '</a></li>';
 				}
+                echo '</ul>';
 			}
 		}
-		echo '</ul>';
 	}
 
-
+    if( !empty( $pages['sub-tabs'] ) ) {
+        foreach ($pages['sub-tabs'] as $parent_slug => $tabs) {
+            if ( $active_subpage == $parent_slug) {
+                echo '<ul class="wppb-subtabs subsubsub">';
+                //determine the active tab, if no tab present then default to the first one
+                if( isset($_GET['tab']) )
+                    $active_tab = sanitize_text_field( $_GET['tab'] );
+                else {
+                    $keys = array_keys($tabs);
+                    $active_tab = array_shift( $keys );
+                }
+                foreach ($tabs as $tab_slug => $tab_name) {
+                    echo '<li><a href="' . esc_url( add_query_arg( array('tab' => $tab_slug) ) ) . '"  class="nav-sub-tab ' . ( $active_tab == $tab_slug ? 'current' : '') . '">' . $tab_name . '</a></li>';
+                }
+                echo '</ul>';
+            }
+        }
+    }
 }
 
 /**

@@ -47,7 +47,7 @@ const getCcOrEcheckPaymentMethodOption = (
 			setActivePaymentMethod( method.gateway );
 			setPaymentStatus().success( {
 				payment_method: method.gateway,
-				[ savedTokenKey ]: token,
+				[ savedTokenKey ]: token + '',
 				isSavedToken: true,
 			} );
 		},
@@ -81,7 +81,7 @@ const getDefaultPaymentMethodOptions = (
 			setActivePaymentMethod( method.gateway );
 			setPaymentStatus().success( {
 				payment_method: method.gateway,
-				[ savedTokenKey ]: token,
+				[ savedTokenKey ]: token + '',
 				isSavedToken: true,
 			} );
 		},
@@ -121,11 +121,6 @@ const SavedPaymentMethodOptions = ( { onChange } ) => {
 			.flatMap( ( type ) => {
 				const typeMethods = customerPaymentMethods[ type ];
 				return typeMethods.map( ( paymentMethod ) => {
-					const method =
-						standardMethods[ paymentMethod.method.gateway ];
-					if ( ! method?.supports?.savePaymentInfo ) {
-						return null;
-					}
 					const option =
 						type === 'cc' || type === 'echeck'
 							? getCcOrEcheckPaymentMethodOption(

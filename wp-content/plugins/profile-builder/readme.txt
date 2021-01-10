@@ -3,8 +3,8 @@ Contributors: cozmoslabs, reflectionmedia, sareiodata, adispiac, madalin.ungurea
 Donate link: http://www.cozmoslabs.com/wordpress-profile-builder/
 Tags: user registration, user profile, user registration form, user fields, extra user fields, edit profile, user custom fields, front-end login, front-end edit profile, front-end user registration, email confirmation, login form, content restriction, restrict content, profile
 Requires at least: 3.1
-Tested up to: 5.5.3
-Stable tag: 3.3.3
+Tested up to: 5.6.0
+Stable tag: 3.3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,11 +68,11 @@ The [Pro version](http://www.cozmoslabs.com/wordpress-profile-builder/?utm_sourc
 * Create Multiple User Listings
 * Create a [Map of Users Locations](https://www.cozmoslabs.com/160142-add-users-map-wordpress/?utm_source=wp.org&utm_medium=pb-description-page&utm_campaign=PBFree)
 * Custom Redirects
-* Multiple Registration Forms (set up [multiple registration forms](https://www.cozmoslabs.com/docs/profile-builder-2/modules/multiple-registration-forms/?utm_source=wp.org&utm_medium=pb-description-page&utm_campaign=PBFree) with different profile fields for certain user roles)
+* Multiple Registration Forms (set up [multiple registration forms](https://www.cozmoslabs.com/docs/profile-builder-2/add-ons/multiple-registration-forms/?utm_source=wp.org&utm_medium=pb-description-page&utm_campaign=PBFree) with different profile fields for certain user roles)
 * Multiple Edit Profile Forms
 * Admin Approval ([approve new users from dashboard or via email](https://www.cozmoslabs.com/112321-approve-users-from-admin-email-using-profile-builder/))
 * Email Customizer (Personalize all emails sent to your users or admins; customize default WordPress registration email)
-* Advanced Modules (e.g. custom redirects, user listing, multiple registration forms etc.)
+* Advanced Add-ons (e.g. custom redirects, user listing, multiple registration forms etc.)
 * Access to support and documentation
 * 1 Year of Updates / Priority Support
 
@@ -167,6 +167,19 @@ This plugin adds/removes user fields in the front-end. Both default and extra pr
 12. Role Editor
 
 == Changelog ==
+= 3.3.4 =
+* Refactored add-on page to unify add-ons and modules, also did some refactoring of folders
+* Integrated Customization Toolbox addon as Advanced Settings in main plugin
+* Integrated Placeholder labels addon in Advanced Settings
+* Integrated Email Confirmation add-on as field in main plugin
+* Integrated Multiple Admin Emails add-on in Advanced Settings
+* Integrated Custom CSS Classes on fields add-on in main plugin
+* Integrated GDPR Communication Preferences add-on in main plugin
+* Integrated Import and Export add-on in main plugin
+* Integrated Labels Edit add-on in main plugin
+* Integrated Maximum Character Length add-on in main plugin
+* Fix for bbPress Messages compatibility issue.
+
 = 3.3.3 =
 * Changed some sanitization functions to more specific ones
 * Add form name to 'User to edit' field ID so it works when multiple forms are on the same page.
