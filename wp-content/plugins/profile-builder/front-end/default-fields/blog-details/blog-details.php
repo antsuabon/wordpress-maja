@@ -36,7 +36,7 @@ function wppb_blog_details_handler( $output, $form_location, $field, $user_id, $
         jQuery(document).ready(function(){
 
             wppb_toggle_required_attrbute_for_blog_details();
-            jQuery("#wppb_create_new_site_checkbox").click(function(){
+            jQuery("#wppb_create_new_site_checkbox").on("click",function(){
 
                 wppb_toggle_required_attrbute_for_blog_details();
                 jQuery(".wppb-blog-details-fields").toggle();

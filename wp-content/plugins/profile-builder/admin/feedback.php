@@ -89,7 +89,7 @@ function wppb_add_feedback_script(){
                 if (jQuery('tr[data-slug="' + pluginSlug + '"] .deactivate a').length != 0) {
 
                     /* the conditional fields */
-                    jQuery("#gform_<?php echo $gf_id; ?> input[type='radio']").click(function(){
+                    jQuery("#gform_<?php echo $gf_id; ?> input[type='radio']").on('click', function(){
                         jQuery("#gform_<?php echo $gf_id; ?> input[type='submit']").prop("disabled", false);
                         jQuery( '.poll_custom_hidden_detail' ).hide();
                         jQuery( '.poll_custom_hidden_detail', jQuery(this).parent() ).show();
@@ -99,7 +99,7 @@ function wppb_add_feedback_script(){
                     deactivationLink = jQuery('tr[data-slug="' + pluginSlug + '"] .deactivate a').attr('href');
 
                     /* show the modal when you click deactivate */
-                    jQuery('tr[data-slug="' + pluginSlug + '"] .deactivate a').click(function (e){
+                    jQuery('tr[data-slug="' + pluginSlug + '"] .deactivate a').on('click', function (e){
                         e . preventDefault();
                         e . stopPropagation();
                         tb_show("Profile Builder Quick Feedback", "#TB_inline?width=740&height=500&inlineId=custom-feedback-modal");
@@ -107,7 +107,7 @@ function wppb_add_feedback_script(){
                     });
 
                     /* on submit */
-                    jQuery("#gform_<?php echo $gf_id; ?>").submit(function(e) {
+                    jQuery("#gform_<?php echo $gf_id; ?>").on('submit', function(e) {
                         var url = "<?php echo $action_link; ?>"; // the script where you handle the form input.
 
                         jQuery.ajax({

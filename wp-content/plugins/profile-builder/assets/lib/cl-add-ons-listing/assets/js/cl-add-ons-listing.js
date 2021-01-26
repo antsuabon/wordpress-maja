@@ -1,7 +1,7 @@
 jQuery( function(){
 
     //disable enter on search input
-    jQuery('#cl-add-ons-search-input').keypress(function(event) {
+    jQuery('#cl-add-ons-search-input').on('keypress', function(event) {
         if (event.keyCode == 13) {
             event.preventDefault();
         }

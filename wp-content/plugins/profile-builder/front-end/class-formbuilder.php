@@ -721,7 +721,7 @@ class Profile_Builder_Form_Creator{
                 if ( this.id.startsWith( "wppb-" ) && this.id.endsWith( "user-to-edit" ) ) {                
                     return this;
                 }
-            }).change(function () {
+            }).on("change", function () {
                 window.location.href = jQuery(this).val();
             });
             jQuery(function(){

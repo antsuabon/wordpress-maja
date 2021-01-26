@@ -4,7 +4,7 @@ Donate link: http://www.cozmoslabs.com/wordpress-profile-builder/
 Tags: user registration, user profile, user registration form, user fields, extra user fields, edit profile, user custom fields, front-end login, front-end edit profile, front-end user registration, email confirmation, login form, content restriction, restrict content, profile
 Requires at least: 3.1
 Tested up to: 5.6.0
-Stable tag: 3.3.4
+Stable tag: 3.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -167,6 +167,12 @@ This plugin adds/removes user fields in the front-end. Both default and extra pr
 12. Role Editor
 
 == Changelog ==
+= 3.3.6 =
+* Fixed a js error that was preventing a form to submit
+
+= 3.3.5 =
+* jQuery updates regarding WordPress jQuery versions changes
+
 = 3.3.4 =
 * Refactored add-on page to unify add-ons and modules, also did some refactoring of folders
 * Integrated Customization Toolbox addon as Advanced Settings in main plugin

@@ -6,19 +6,19 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'bcb67127332b9bbc91faf6a0893ceda2b149fd35',
+    'reference' => '68fc835bce82d1386e71bbaef0c7a370d395af2c',
     'name' => 'woocommerce/woocommerce-blocks',
   ),
   'versions' => 
   array (
     'automattic/jetpack-autoloader' => 
     array (
-      'pretty_version' => 'v2.5.0',
-      'version' => '2.5.0.0',
+      'pretty_version' => 'v2.7.1',
+      'version' => '2.7.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '7945e862473e39f05e6f698f1598ea30a12e5965',
+      'reference' => '5437697a56aefbdf707849b9833e1b36093d7a73',
     ),
     'composer/installers' => 
     array (
@@ -50,7 +50,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'bcb67127332b9bbc91faf6a0893ceda2b149fd35',
+      'reference' => '68fc835bce82d1386e71bbaef0c7a370d395af2c',
     ),
   ),
 );

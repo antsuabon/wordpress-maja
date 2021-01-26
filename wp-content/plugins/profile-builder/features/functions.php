@@ -846,8 +846,8 @@ function wppb_password_strength_check(){
                 }
                 jQuery( document ).ready( function() {
                     // Binding to trigger checkPasswordStrength
-                    jQuery('#passw1').val('').keyup( check_pass_strength );
-                    jQuery('#passw2').val('').keyup( check_pass_strength );
+                    jQuery('#passw1').val('').on( 'keyup', check_pass_strength );
+                    jQuery('#passw2').val('').on( 'keyup', check_pass_strength );
                     jQuery('#pass-strength-result').show();
                 });
             </script>

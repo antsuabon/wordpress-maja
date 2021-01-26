@@ -11,7 +11,7 @@ jQuery(function(){
 		jQuery('strong, .field-label',  jQuery('#'+box)).css( 'width', 'auto' );
 	} */
 
-	jQuery( '.wck-post-box .hndle' ).click( function(){
+	jQuery( '.wck-post-box .hndle' ).on( 'click', function(){
 		jQuery('strong, .field-label',  jQuery(this).parent() ).css( 'width', 'auto' );
 	})
 
@@ -192,7 +192,7 @@ function mb_sortable_elements() {
 		jQuery( "#sortable:not(select)" ).disableSelection();
 
 
-		jQuery('.mb-table-container ul').mousedown( function(e){
+		jQuery('.mb-table-container ul').on( 'mousedown', function(e){
 			e.stopPropagation();
 		});
 }

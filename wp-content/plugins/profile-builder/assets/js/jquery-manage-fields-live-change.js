@@ -663,11 +663,11 @@ function wppb_edit_form_properties( container_name, element_id ){
 	field = jQuery( container_name + ' #' + element_id + ' ' + '#field' ).val();
 
 	if ( ( field in fields ) ){
-		var to_show = fields[jQuery.trim(field)]['show_rows'];
+		var to_show = fields[ field.trim() ]['show_rows'];
 		for (var key in to_show)
 			jQuery( container_name + ' #' + element_id + ' ' + to_show[key] ).show();
 
-        var properties = fields[ jQuery.trim(field) ]['properties'];
+        var properties = fields[ field.trim() ]['properties'];
         if( typeof properties !== 'undefined' && properties ) {
             for( var key in properties ) {
                 if( typeof properties['meta_name_value'] !== 'undefined' ) {
@@ -685,12 +685,12 @@ function wppb_edit_form_properties( container_name, element_id ){
 
 
 function wppb_display_needed_fields( index, container_name, current_field_select ){
-	var show_rows = fields[jQuery.trim(index)]['show_rows'];
+	var show_rows = fields[index.trim()]['show_rows'];
 	for (var key in show_rows) {
 		jQuery(  show_rows[key], jQuery( current_field_select ).parents( '.mb-list-entry-fields' ) ).show();
 	}
 
-	var properties = fields[jQuery.trim(index)]['properties'];
+	var properties = fields[index.trim()]['properties'];
 	if ( ( ( typeof properties !== 'undefined' ) && ( properties ) ) ) { //the extra (second) condition is a particular case since only the username is defined in our global array that has no meta-name
 		for (var key in properties) {
 			if ( ( typeof properties['meta_name_value'] !== 'undefined' ) ){
@@ -750,7 +750,7 @@ function wppb_display_needed_fields( index, container_name, current_field_select
     //Handle user role sorting
     wppb_handle_user_role_field( container_name );
 
-	var set_required = fields[jQuery.trim(index)]['required'];
+	var set_required = fields[index.trim()]['required'];
 	if ( ( typeof set_required !== 'undefined' ) && ( set_required ) ){
 		jQuery( container_name + ' ' + '#required' ).val( 'Yes' );
 		jQuery( container_name + ' ' + '#required' ).attr( 'disabled', true );

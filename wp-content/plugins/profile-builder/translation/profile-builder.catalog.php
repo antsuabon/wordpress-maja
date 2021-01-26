@@ -1350,13 +1350,13 @@
 <?php __("More Info Url", "profile-builder"); ?>
 <?php __("Avatar or Gravatar", "profile-builder"); ?>
 <?php __("User Nicename", "profile-builder"); ?>
-<?php __("Sort Tags", "profile-builder"); ?>
-<?php __("Extra Functions", "profile-builder"); ?>
 <?php __("Pagination", "profile-builder"); ?>
 <?php __("Search all Fields", "profile-builder"); ?>
 <?php __("Faceted Menus", "profile-builder"); ?>
 <?php __("User Count", "profile-builder"); ?>
 <?php __("Map of listed users", "profile-builder"); ?>
+<?php __("Sort Tags", "profile-builder"); ?>
+<?php __("Extra Functions", "profile-builder"); ?>
 <?php __("Go Back Link", "profile-builder"); ?>
 <?php __("All-userlisting Template", "profile-builder"); ?>
 <?php __("Single-userlisting Template", "profile-builder"); ?>

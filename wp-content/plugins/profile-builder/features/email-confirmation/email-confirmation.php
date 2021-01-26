@@ -61,11 +61,11 @@ function wppb_add_pending_users_header_script(){
 
 			if (confirm(actionText)) {
 				jQuery.post( ajaxurl ,  { action:"wppb_handle_email_confirmation_cases", URL:URL, todo:todo, user_email:user_email}, function(response) {
-					if (jQuery.trim(response) == 'ok')
+					if (response.trim() == 'ok')
 						window.location=URL;
 
 					else
-						alert( jQuery.trim(response) );
+						alert( response.trim() );
 				});
 			}
 		}

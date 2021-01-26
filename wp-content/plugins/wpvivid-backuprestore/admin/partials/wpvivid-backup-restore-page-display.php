@@ -2124,7 +2124,7 @@ function wpvivid_backuppage_add_page_downlaod(){
             jQuery('#wpvivid_init_download_info').show();
             jQuery('#wpvivid_init_download_info').find('.spinner').addClass('is-active');
 
-            wpvivid_post_request_addon(ajax_data, function(data)
+            wpvivid_post_request(ajax_data, function(data)
             {
                 jQuery('#wpvivid_init_download_info').hide();
                 jQuery('#wpvivid_init_download_info').find('.spinner').removeClass('is-active');

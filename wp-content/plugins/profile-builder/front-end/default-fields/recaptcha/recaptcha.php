@@ -170,7 +170,7 @@ function wppb_recaptcha_script_footer(){
             /* make sure if the invisible recaptcha did not load properly ( network error or wrong keys ) we can still submit the form */
             jQuery(document).ready(function(){
                 if( window.wppbRecaptchaInitError === true ){
-                    jQuery("input[type=\'submit\']", jQuery( ".wppb-recaptcha-element" ).closest("form") ).click(function(e){
+                    jQuery("input[type=\'submit\']", jQuery( ".wppb-recaptcha-element" ).closest("form") ).on("click", function(e){
                             jQuery(this).closest("form").submit();
                     });
                 }

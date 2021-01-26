@@ -1,6 +1,6 @@
 jQuery(document).ready(function(){
     if( jQuery("#wppb-register-user").length ) {
-        jQuery('#wppb-register-user').submit(function (e) {
+        jQuery('#wppb-register-user').on('submit', function (e) {
             //stop submitting the form to see the disabled button effect
             e.preventDefault();
             //disable the submit button
