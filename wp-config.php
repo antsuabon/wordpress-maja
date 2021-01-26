@@ -21,19 +21,19 @@
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 //define( 'DB_NAME', 'wordpress_maja' );
-define( 'DB_NAME', $_ENV["MYSQL_ADDON_DB"] );
+define( 'DB_NAME', getenv("MYSQL_ADDON_DB") );
 
 /** MySQL database username */
 //define( 'DB_USER', 'root' );
-define( 'DB_USER', $_ENV["MYSQL_ADDON_USER"] );
+define( 'DB_USER', getenv("MYSQL_ADDON_USER") );
 
 /** MySQL database password */
 //define( 'DB_PASSWORD', '' );
-define( 'DB_PASSWORD', $_ENV["MYSQL_ADDON_PASSWORD"] );
+define( 'DB_PASSWORD', getenv("MYSQL_ADDON_PASSWORD") );
 
 /** MySQL hostname */
 //define( 'DB_HOST', 'localhost' );
-define( 'DB_HOST', $_ENV["MYSQL_ADDON_HOST"] );
+define( 'DB_HOST', getenv("MYSQL_ADDON_HOST") );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8mb4' );
