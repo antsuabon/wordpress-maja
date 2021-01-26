@@ -33,7 +33,7 @@ define( 'DB_PASSWORD', 'tSCaUDu2tTiumlcKjIC' );
 
 /** MySQL hostname */
 //define( 'DB_HOST', 'localhost' );
-define( 'DB_HOST', 'by6yqrelqddneuiltdai-mysql.services.clever-cloud.com' );
+define( 'DB_HOST', 'hv-par4-025.clvrcld.net:11713' );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8mb4' );
@@ -81,7 +81,7 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true);
 
 /* That's all, stop editing! Happy publishing. */
 
